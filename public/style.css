@@ -1,24 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 body {
-    background-color: black;
+    background-color: #2E3440;
     color: white;
     font-family: 'roboto mono', monospace;
     padding-bottom: 100px;
 }
 
-nav li a:hover {
-    color: white;
-    text-decoration: none;
-}
-    
-h2 {
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    padding: 50px;
-}
-
-.content{
+.content {
     position: relative;
     display: block;
     margin-left: auto;
@@ -27,11 +16,11 @@ h2 {
     margin-top: 5%;
 }
 
-.content a {
+a {
     color: white;
 }
 
-.content a:hover {
+a:hover {
     color: white;
     text-decoration: none;
 }
@@ -40,56 +29,14 @@ hr {
     border: 1px solid white;
 }
 
-
-
 .card {
     border-radius: 10px;
     text-align: center;
-}
-
-.card hr {
-    border: 1px solid white;
+    color: white;
+    text-decoration: none;
 }
 
 .card-title {
     text-transform: uppercase;
     letter-spacing: 3px;
-}
-
-.card a {
-    color: white;
-    text-decoration: none;
-}
-
-.card a:hover {
-    text-decoration: none;
-}
-
-.form {
-    text-align: center;
-}
-
-.form input {
-    width: 100%;
-    border: 3px solid rgb(255, 208, 0);
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-    background-color: black;
-    padding: 20px;
-    color: white;
-}
-
-.form button {
-    width: 100%;
-    border: 0px solid white;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical;
-    background-color: rgb(255, 208, 0);
-    padding: 20px;
-    color:black;
-    letter-spacing: 6px;
 }

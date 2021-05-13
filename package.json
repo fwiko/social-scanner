@@ -1,10 +1,10 @@
 {
-  "name": "usernamecheck",
-  "version": "1.0.0",
-  "description": "",
+  "name": "usernamechecker",
+  "version": "2.0.0",
+  "description": "An application written to check username availability on a variety of platforms",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nodemon app.js",
     "start": "node app.js"
   },
   "author": "",
@@ -16,6 +16,7 @@
     "got": "^11.8.0",
     "got-xml": "^1.0.0",
     "hbs": "^4.1.1",
+    "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "twitter": "^1.7.1",
     "xml-js": "^1.6.11"
