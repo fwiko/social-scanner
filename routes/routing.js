@@ -1,6 +1,4 @@
 const router = require('express').Router();
-const e = require('express');
-const got = require('got');
 const checker = require('../functions')
 
 async function checkUsername(username) {
@@ -31,54 +29,26 @@ async function checkUsername(username) {
     })
 }
 
-function captchaFail(res) {
-    res.render('index', {
-        message: "Failed CAPTCHA verification"
-    });
-}
-
 router.post('/', async (req, res) => {
 
     const {
-        username,
+        username
     } = req.body;
 
-    const recaptcha_response = req.body['g-recaptcha-response'];
+    if (username != undefined && username != "" && username.length <= 30) {
 
-    if (recaptcha_response === undefined || recaptcha_response === '' || recaptcha_response === null) {
-        return captchaFail(res);
-    }
-
-    const secret_key = process.env.CAPTCHA_SECRET_KEY;
-
-    const verification_url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${recaptcha_response}&remoteip=${req.remoteAddress}`;
-
-    try {
-        let { body } = await got(verification_url);
-        body = JSON.parse(body);
-
-        if (body.success != undefined && !body.success) {
-            return captchaFail(res);
-        } 
-        else {
-
-            if (username != undefined && username != "" && username.length <= 30) {
-                await checkUsername(username)
-                    .then(() => {
-                        res.render('index', {
-                            mediums: checker.mediums,
-                            username
-                        });
-                    })
-            } else {
-                return res.render('index', {
-                    message: "Invalid username input"
+        await checkUsername(username)
+            .then(() => {
+                res.render('index', {
+                    mediums: checker.mediums,
+                    username
                 });
-            }
-        }
-    } catch (error) {
-        console.error(error);
-        return captchaFail(res);
+            })
+
+    } else {
+        res.render('index', {
+            message: "Invalid username input"
+        });
     }
 });
 
