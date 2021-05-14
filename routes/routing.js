@@ -24,6 +24,9 @@ async function checkUsername(username) {
     await checker.minecraftCheck(username).then(() => {
         console.log(`> checked minecraft for ${username}`)
     })
+    await checker.robloxCheck(username).then(() => {
+        console.log(`> checked roblox for ${username}`)
+    })
 }
 
 router.post('/', async (req, res) => {

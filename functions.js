@@ -251,6 +251,34 @@ async function minecraftCheck(username) {
     }
 }
 
+async function robloxCheck(username) {
+
+    async function validRoblox(response) {
+        if (response.hasOwnProperty('errorMessage')) {
+            mediums.roblox = {
+                availability: true,
+                icon: "fas fa-gamepad",
+                service_name: "Roblox",
+                link: `https://www.roblox.com/`
+            }
+        } else {
+            mediums.roblox = {
+                availability: false,
+                icon: "fas fa-gamepad",
+                service_name: "Roblox",
+                link: `https://www.roblox.com/users/${response.Id}/profile/`
+            }
+        }
+    }
+
+    const response = await got(`https://api.roblox.com/users/get-by-username?username=${username}`);
+    let responseBody = response.body;
+    responseBody = JSON.parse(responseBody);
+
+    await validRoblox(responseBody);
+
+}
+
 
 /*async function instagramCheck(username) {
     try {
@@ -269,5 +297,6 @@ module.exports = {
     youtubeCheck,
     redditCheck,
     minecraftCheck,
+    robloxCheck,
     mediums
 };
