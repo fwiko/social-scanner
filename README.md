@@ -18,7 +18,7 @@ PORT = 3027
 
 `npm run start`
 
-# Run Using Docker
+## Run Using Docker
 
 ### Environment Variables
 Create `.env` in main directory containing the following information
