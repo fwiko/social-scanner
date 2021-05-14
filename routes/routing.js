@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
         username
     } = req.body;
 
-    if (username != "" && username.length <= 30) {
+    if (username != undefined && username != "" && username.length <= 30) {
 
         await checkUsername(username)
             .then(() => {
