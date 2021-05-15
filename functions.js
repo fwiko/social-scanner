@@ -2,35 +2,31 @@ const got = require('got');
 const xmlGot = got.extend(require("got-xml")())
 var Twitter = require('twitter');
 
-const twitterClient = new Twitter({
+var mediums = {}
+
+var twitterClient = new Twitter({
     consumer_key: process.env.CONSUMER_KEY,
     consumer_secret: process.env.CONSUMER_SECRET,
     bearer_token: process.env.BEARER_TOKEN
 })
 
-let mediums = [];
-
-async function addSite(config) {
-    await mediums.push(config)
-}
-
 async function githubCheck(username) {
 
     async function validGithub(response) {
         if (response == 404) {
-            await addSite({
+            mediums.github = {
                 availability: true,
                 icon: "fab fa-github",
                 service_name: "Github",
                 link: `https://github.com/${username}/`
-            });
+            }
         } else {
-            await addSite({
+            mediums.github = {
                 availability: false,
                 icon: "fab fa-github",
                 service_name: "Github",
                 link: `https://github.com/${username}/`
-            });
+            }
         }
     }
     try {
@@ -51,19 +47,19 @@ async function githubCheck(username) {
 async function behanceCheck(username) {
     async function validBehance(response) {
         if (response == 404) {
-            await addSite({
+            mediums.behance = {
                 availability: true,
                 icon: "fab fa-behance",
                 service_name: "Behance",
                 link: `https://behance.net/${username}/`
-            });
+            }
         } else {
-            await addSite({
+            mediums.behance = {
                 availability: false,
                 icon: "fab fa-behance",
                 service_name: "Behance",
                 link: `https://behance.net/${username}/`
-            });
+            }
         }
     }
     try {
@@ -85,19 +81,19 @@ async function behanceCheck(username) {
 async function steamCheck(username) {
     async function validSteam(response) {
         if (response == undefined) {
-            await addSite({
+            mediums.steam = {
                 availability: true,
                 icon: "fab fa-steam",
                 service_name: "Steam",
                 link: `http://steamcommunity.com/id/${username}/`
-            });
+            }
         } else {
-            await addSite({
+            mediums.steam = {
                 availability: false,
                 icon: "fab fa-steam",
                 service_name: "Steam",
                 link: `http://steamcommunity.com/id/${username}/`
-            });
+            }
         }
     }
     try {
@@ -119,19 +115,19 @@ async function steamCheck(username) {
 async function twitterCheck(username) {
     async function validTwitter(result) {
         if (result.hasOwnProperty('errors')) {
-            await addSite({
+            mediums.twitter = {
                 availability: true,
                 icon: "fab fa-twitter",
                 service_name: "Twitter",
                 link: `https://twitter.com/${username}`
-            });
+            }
         } else {
-            await addSite({
+            mediums.twitter = {
                 availability: false,
                 icon: "fab fa-twitter",
                 service_name: "Twitter",
                 link: `https://twitter.com/${username}`
-            });
+            }
         }
     }
     try {
@@ -154,19 +150,19 @@ async function twitterCheck(username) {
 async function youtubeCheck(username) {
     async function validYoutube(response) {
         if (response == 404) {
-            await addSite({
+            mediums.youtube = {
                 availability: true,
                 icon: "fab fa-youtube",
                 service_name: "YouTube",
                 link: `https://youtube.com/c/${username}`
-            });
+            }
         } else {
-            await addSite({
+            mediums.youtube = {
                 availability: false,
                 icon: "fab fa-youtube",
                 service_name: "YouTube",
                 link: `https://youtube.com/c/${username}`
-            });
+            }
         }
     }
     try {
@@ -188,19 +184,19 @@ async function youtubeCheck(username) {
 async function redditCheck(username) {
     async function validReddit(response) {
         if (response > 400) {
-            await addSite({
+            mediums.reddit = {
                 availability: true,
                 icon: "fab fa-reddit",
                 service_name: "Reddit",
                 link: `https://www.reddit.com/user/${username}/`
-            });
+            }
         } else {
-            await addSite({
+            mediums.reddit = {
                 availability: false,
                 icon: "fab fa-reddit",
                 service_name: "Reddit",
                 link: `https://www.reddit.com/user/${username}/`
-            });
+            }
         }
     }
     try {
@@ -223,19 +219,19 @@ async function minecraftCheck(username) {
 
     async function validMinecraft(response) {
         if (response != 200) {
-            await addSite({
+            mediums.minecraft = {
                 availability: true,
                 icon: "fas fa-cube",
                 service_name: "Minecraft",
                 link: `https://namemc.com/profile/${username}/`
-            });
+            }
         } else {
-            await addSite({
+            mediums.minecraft = {
                 availability: false,
                 icon: "fas fa-cube",
                 service_name: "Minecraft",
                 link: `https://namemc.com/profile/${username}/`
-            });
+            }
         }
     }
 
@@ -259,19 +255,19 @@ async function robloxCheck(username) {
 
     async function validRoblox(response) {
         if (response.hasOwnProperty('errorMessage')) {
-            await addSite({
+            mediums.roblox = {
                 availability: true,
                 icon: "fas fa-gamepad",
                 service_name: "Roblox",
                 link: `https://www.roblox.com/`
-            });
+            }
         } else {
-            await addSite({
+            mediums.roblox = {
                 availability: false,
                 icon: "fas fa-gamepad",
                 service_name: "Roblox",
                 link: `https://www.roblox.com/users/${response.Id}/profile/`
-            });
+            }
         }
     }
 
