@@ -27,6 +27,9 @@ async function checkUsername(username) {
     await checker.robloxCheck(username).then(() => {
         console.log(`> checked roblox for ${username}`)
     })
+    await checker.twitchCheck(username).then(() => {
+        console.log(`> checked twitch for ${username}`)
+    })
 }
 
 router.post('/', async (req, res) => {

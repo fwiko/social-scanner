@@ -271,14 +271,58 @@ async function robloxCheck(username) {
         }
     }
 
-    const response = await got(`https://api.roblox.com/users/get-by-username?username=${username}`);
-    let responseBody = response.body;
-    responseBody = JSON.parse(responseBody);
-
-    await validRoblox(responseBody);
+    try {
+        const response = await got(`https://api.roblox.com/users/get-by-username?username=${username}`);
+        let responseBody = response.body;
+        responseBody = JSON.parse(responseBody);
+        await validRoblox(responseBody);
+    } catch (error) {
+        console.log(error);
+        return;    
+    }
 
 }
 
+
+async function twitchCheck(username) {
+
+    function validTwitch(response) {
+        if (response.data.length > 0) {
+            mediums.twitch = {
+                availability: false,
+                icon: "fab fa-twitch",
+                service_name: "Twitch",
+                link: `https://twitch.tv/${username}`
+            }
+        } else {
+            mediums.twitch = {
+                availability: true,
+                icon: "fab fa-twitch",
+                service_name: "Twitch",
+                link: `https://twitch.tv/`
+            }
+        }
+    }
+
+    try{
+        const response = await got(`https://api.twitch.tv/helix/users/?login=${username}`, {
+            hooks: {
+                beforeRequest: [
+                    options => {
+                        options.headers['client-id'] = "g6ldcnlzsifxev8oqgqlkd8l90gnue";
+                        options.headers['Authorization'] = "Bearer txxexulgdj55382uuls2c0a80uerrr";
+                    }
+                ]
+            }
+        }).then((response) => {
+            validTwitch(JSON.parse(response.body));
+        })
+    } catch (error) {
+        console.log(error);
+        return;
+    }
+
+}
 
 /*async function instagramCheck(username) {
     try {
@@ -298,5 +342,6 @@ module.exports = {
     redditCheck,
     minecraftCheck,
     robloxCheck,
+    twitchCheck,
     mediums
 };
