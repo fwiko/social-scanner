@@ -10,11 +10,11 @@ async function checkUsernames(username, callback) {
 }
 
 router.post('/', async (req, res) => {
-    const {
-        username
-    } = req.body;
+    const { username } = req.body;
     if (username != undefined && username != "" && username.length <= 30) {
+        var ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.ip;
         await checkUsernames(username, (mediums) => {
+            console.log(`> ${ip} checked ${username}`)
             res.render('index', {
                 mediums: mediums,
                 username
