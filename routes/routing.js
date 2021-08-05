@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const socialChecker = require('../medium_checker');
-const mediumChecker = require('../medium_checker')
+const socialChecker = require('../modules/medium_checker');
+const mediumChecker = require('../modules/medium_checker')
 
 async function checkUsernames(username, callback) {
     const socialChecker = new mediumChecker(username);
