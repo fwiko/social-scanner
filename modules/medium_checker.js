@@ -250,6 +250,78 @@ module.exports = class socialChecker {
         });
     }
 
+    facebookCheck() {
+        var that = this;
+        return new Promise(async function(resolve, reject) {
+            var availability, code;
+            try {
+                const response = await got(`https://www.facebook.com/${that.username}/`);
+                var code = response.statusCode;
+            } catch (error) {
+                var code = error.response.statusCode;
+            }
+            if (code == 200) {
+                availability = false;
+            } else {
+                availability = true;
+            }
+            resolve(that.#Obj({
+                availability: availability,
+                icon: "fab fa-facebook",
+                service_name: "Facebook",
+                link: `https:///www.facebook.com/${that.username}`
+            }));
+        });
+    }
+
+    vimeoCheck() {
+        var that = this;
+        return new Promise(async function(resolve, reject) {
+            var availability, code;
+            try {
+                const response = await got(`https://vimeo.com/${that.username}/`);
+                var code = response.statusCode;
+            } catch (error) {
+                var code = error.response.statusCode;
+            }
+            if (code == 200) {
+                availability = false;
+            } else {
+                availability = true;
+            }
+            resolve(that.#Obj({
+                availability: availability,
+                icon: "fab fa-vimeo",
+                service_name: "Vimeo",
+                link: `https:///vimeo.com/${that.username}`
+            }));
+        });
+    }
+ 
+    dribbbleCheck() {
+        var that = this;
+        return new Promise(async function(resolve, reject) {
+            var availability, code;
+            try {
+                const response = await got(`https://dribbble.com/${that.username}/`);
+                var code = response.statusCode;
+            } catch (error) {
+                var code = error.response.statusCode;
+            }
+            if (code == 200) {
+                availability = false;
+            } else {
+                availability = true;
+            }
+            resolve(that.#Obj({
+                availability: availability,
+                icon: "fab fa-dribbble",
+                service_name: "Dribbble",
+                link: `https:///dribbble.com/${that.username}`
+            }));
+        });
+    }
+ 
     checkAll(callback) {
         Promise.all([
             this.twitterCheck(),
@@ -260,7 +332,10 @@ module.exports = class socialChecker {
             this.redditCheck(),
             this.minecraftCheck(),
             this.robloxCheck(),
-            this.twitchCheck()
+            this.twitchCheck(),
+            this.facebookCheck(),
+            this.vimeoCheck(),
+            this.dribbbleCheck()
         ]).then((values)=>{
             callback(values);
         })
