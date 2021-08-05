@@ -6,6 +6,8 @@ dotenv.config({
     path: './.env'
 })
 
+const port = process.env.PORT || 8080;
+
 const app = express();
 
 const publicDirectory = path.join(__dirname, './public');
@@ -29,9 +31,6 @@ app.use('/', require('./routes/routing'));
 app.use((req, res, next) => {
     res.redirect('../../../')
 });
-
-
-const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
     console.log(`server started on port ${port}...`);
