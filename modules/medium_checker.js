@@ -134,7 +134,7 @@ module.exports = class socialChecker {
                 const response = await got(options.url);
                 var code = response.statusCode;
             } catch (error) {
-                var code = error.response.statusCode;
+                var code = error.response.statusCode || 404;
             }
             if (code == 200) {
                 availability = false;

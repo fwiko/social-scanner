@@ -10,6 +10,8 @@ async function checkUsernames(username, callback) {
     });
 }
 
+// TODO - username alpha, number, underscore and fullstop validation
+
 router.post('/', async (req, res) => {
     const { username } = req.body;
     if (username != undefined && username != "" && username.length <= 30) {
