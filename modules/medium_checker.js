@@ -91,7 +91,6 @@ module.exports = class socialChecker {
     }
 
     #twitchCheck() {
-        console.log("HELLO!")
         var that = this;
         return new Promise(async function(resolve, reject) {
             var availability, responseBody
@@ -107,7 +106,6 @@ module.exports = class socialChecker {
                     }
                 }).then((response) => {
                     responseBody = JSON.parse(response.body);
-                    console.log(responseBody);
                     if (responseBody.data.length > 0) {
                         availability = false;
                     } else {
