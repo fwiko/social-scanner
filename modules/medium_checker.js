@@ -14,64 +14,10 @@ module.exports = class socialChecker {
         this.username = username;
     }
 
-    #Obj(options) {
-        return ({
-            availability: options.availability,
-            icon: options.icon,
-            service_name: options.service_name,
-            link: options.link
-        });
-    }
-    
-    githubCheck() {
-        var that = this;
-        return new Promise(async function(resolve, reject) {
-            var availability, code;
-            try {
-                const response = await got(`https://github.com/${that.username}/`);
-                code = response.statusCode;
-            } catch (error) {
-                code = error.response.statusCode;
-            }
-            if (code == 200) {
-                availability = false;
-            } else {
-                availability = true;
-            }
-            resolve(that.#Obj({
-                availability: availability,
-                icon: "fab fa-github",
-                service_name: "Github",
-                link: `https://github.com/${that.username}/`
-            }));
-        })
-    }
-    
-    behanceCheck() {
-        var that = this;
-        return new Promise(async function(resolve, reject) {
-            var availability, code;
-            try {
-                const response = await got(`https://behance.net/${that.username}/`);
-                code = response.statusCode;
-            } catch (error) {
-                code = error.response.statusCode;
-            }
-            if (code == 200) {
-                availability = false;
-            } else {
-                availability = true;
-            }
-            resolve(that.#Obj({
-                availability: availability,
-                icon: "fab fa-behance",
-                service_name: "Behance",
-                link: `https://behance.net/${that.username}/`
-            }));
-        });
-    }
-    
-    steamCheck() {
+
+
+    // Specialised Check Functions 
+    #steamCheck() {
         var that = this;
         return new Promise(async function(resolve, reject) {
             var profile, availability;
@@ -86,16 +32,16 @@ module.exports = class socialChecker {
             } else {
                 availability = false;
             }
-            resolve(that.#Obj({
+            resolve({
                 availability: availability,
                 icon: "fab fa-steam",
                 service_name: "Steam",
                 link: `http://steamcommunity.com/id/${that.username}/`
-            }));
+            });
         });
     }
     
-    twitterCheck() {
+    #twitterCheck() {
         var that = this;
         return new Promise(function(resolve, reject) {
             var availability;
@@ -105,89 +51,17 @@ module.exports = class socialChecker {
                 } else {
                     availability = true;
                 }
-                resolve(that.#Obj({
+                resolve({
                     availability: availability,
                     icon: "fab fa-twitter",
                     service_name: "Twitter",
                     link: `https://twitter.com/${that.username}`
-                }));
+                });
             });
         });
     }
 
-    youtubeCheck() {
-        var that = this;
-        return new Promise(async function(resolve, reject) {
-            var availability, code;
-            try {
-                const response = await got(`https://youtube.com/c/${that.username}/`);
-                var code = response.statusCode;
-            } catch (error) {
-                var code = error.response.statusCode;
-            }
-            if (code == 200) {
-                availability = false;
-            } else {
-                availability = true;
-            }
-            resolve(that.#Obj({
-                availability: availability,
-                icon: "fab fa-youtube",
-                service_name: "YouTube",
-                link: `https://youtube.com/c/${that.username}`
-            }));
-        });
-    }
-
-    redditCheck() {
-        var that = this;
-        return new Promise(async function(resolve, reject) {
-            var availability, code;
-            try {
-                const response = await got(`https://www.reddit.com/user/${that.username}.json`)
-                var code = response.statusCode;
-            } catch (error) {
-                var code = error.response.statusCode;
-            }
-            if (code == 200) {
-                availability = false;
-            } else {
-                availability = true;
-            }
-            resolve(that.#Obj({
-                availability: availability,
-                icon: "fab fa-reddit",
-                service_name: "Reddit",
-                link: `https://www.reddit.com/user/${that.username}/`
-            }));
-        });
-    }
-
-    minecraftCheck() {
-        var that = this;
-        return new Promise(async function(resolve, reject) {
-            var availability, code;
-            try {
-                const response = await got(`https://api.mojang.com/users/profiles/minecraft/${that.username}`);
-                var code = response.statusCode;
-            } catch (error) {
-                var code = error.response.statusCode;
-            }
-            if (code == 200) {
-                availability = false;
-            } else {
-                availability = true;
-            }
-            resolve(that.#Obj({
-                availability: availability,
-                icon: "fas fa-cube",
-                service_name: "Minecraft",
-                link: `https://namemc.com/profile/${that.username}/`
-            }));
-        });
-    }
-
-    robloxCheck() {
+    #robloxCheck() {
         var that = this;
         return new Promise(async function(resolve, reject) {
             var availability, responseBody, link;
@@ -207,16 +81,17 @@ module.exports = class socialChecker {
             } else {
                 link = "https://www.roblox.com/"
             }
-            resolve(that.#Obj({
+            resolve({
                 availability: availability,
                 icon: "fas fa-gamepad",
                 service_name: "Roblox",
                 link: link
-            }));
+            });
         });
     }
 
-    twitchCheck() {
+    #twitchCheck() {
+        console.log("HELLO!")
         var that = this;
         return new Promise(async function(resolve, reject) {
             var availability, responseBody
@@ -232,6 +107,7 @@ module.exports = class socialChecker {
                     }
                 }).then((response) => {
                     responseBody = JSON.parse(response.body);
+                    console.log(responseBody);
                     if (responseBody.data.length > 0) {
                         availability = false;
                     } else {
@@ -239,23 +115,26 @@ module.exports = class socialChecker {
                     }
                 })
             } catch (error) {
+                throw error;
                 availability = true;
             }
-            resolve(that.#Obj({
+            resolve({
                 availability: availability,
                 icon: "fab fa-twitch",
                 service_name: "Twitch",
                 link: `https://twitch.tv/${that.username}`
-            }));
+            });
         });
     }
 
-    facebookCheck() {
+
+    // Check used for services that can be queried in the easiest way based on the 200 or 404 response code
+    #traditionalCheck(options) {
         var that = this;
         return new Promise(async function(resolve, reject) {
             var availability, code;
             try {
-                const response = await got(`https://www.facebook.com/${that.username}/`);
+                const response = await got(options.url);
                 var code = response.statusCode;
             } catch (error) {
                 var code = error.response.statusCode;
@@ -265,77 +144,90 @@ module.exports = class socialChecker {
             } else {
                 availability = true;
             }
-            resolve(that.#Obj({
+
+            let response_data = {
                 availability: availability,
-                icon: "fab fa-facebook",
-                service_name: "Facebook",
-                link: `https:///www.facebook.com/${that.username}`
-            }));
+                icon: options.icon,
+                service_name: options.service_name,
+                link: options.url
+            }
+
+            if (options.link) {
+                response_data.link = options.link
+            }
+
+            resolve(response_data);
         });
     }
 
-    vimeoCheck() {
-        var that = this;
-        return new Promise(async function(resolve, reject) {
-            var availability, code;
-            try {
-                const response = await got(`https://vimeo.com/${that.username}/`);
-                var code = response.statusCode;
-            } catch (error) {
-                var code = error.response.statusCode;
-            }
-            if (code == 200) {
-                availability = false;
-            } else {
-                availability = true;
-            }
-            resolve(that.#Obj({
-                availability: availability,
-                icon: "fab fa-vimeo",
-                service_name: "Vimeo",
-                link: `https:///vimeo.com/${that.username}`
-            }));
-        });
-    }
- 
-    dribbbleCheck() {
-        var that = this;
-        return new Promise(async function(resolve, reject) {
-            var availability, code;
-            try {
-                const response = await got(`https://dribbble.com/${that.username}/`);
-                var code = response.statusCode;
-            } catch (error) {
-                var code = error.response.statusCode;
-            }
-            if (code == 200) {
-                availability = false;
-            } else {
-                availability = true;
-            }
-            resolve(that.#Obj({
-                availability: availability,
-                icon: "fab fa-dribbble",
-                service_name: "Dribbble",
-                link: `https:///dribbble.com/${that.username}`
-            }));
-        });
-    }
- 
+    // Checkall function that can be used by external scripts
     checkAll(callback) {
         Promise.all([
-            this.twitterCheck(),
-            this.githubCheck(),
-            this.behanceCheck(),
-            this.steamCheck(),
-            this.youtubeCheck(),
-            this.redditCheck(),
-            this.minecraftCheck(),
-            this.robloxCheck(),
-            this.twitchCheck(),
-            this.facebookCheck(),
-            this.vimeoCheck(),
-            this.dribbbleCheck()
+            // Specialised Checks
+            this.#twitterCheck(),
+            this.#steamCheck(),
+            this.#robloxCheck(),
+            this.#twitchCheck(),
+
+            // Traditional Checks
+            this.#traditionalCheck( // GitHub check
+                {
+                    url: `https://github.com/${this.username}/`,
+                    icon: "fab fa-github",
+                    service_name: "GitHub"
+                }
+            ),
+            this.#traditionalCheck( // Behance check
+                {
+                    url: `https://behance.net/${this.username}/`,
+                    icon: "fab fa-behance",
+                    service_name: "Behance"
+                }
+            ),
+            this.#traditionalCheck( // Youtube check
+                {
+                    url: `https://youtube.com/c/${this.username}/`,
+                    icon: "fab fa-youtube",
+                    service_name: "YouTube"
+                }
+            ),
+            this.#traditionalCheck( // Reddit check
+                {
+                    url: `https://www.reddit.com/user/${this.username}.json`,
+                    icon: "fab fa-reddit",
+                    service_name: "Reddit",
+                    link: `https://www.reddit.com/user/${this.username}`
+                }
+            ),
+            this.#traditionalCheck( // Minecraft check
+                {
+                    url: `https://api.mojang.com/users/profiles/minecraft/${this.username}`,
+                    icon: "fas fa-cube",
+                    service_name: "Minecraft",
+                    link: `https://namemc.com/profile/${this.username}/`
+                }
+            ),
+            this.#traditionalCheck( // Facebook check
+                {
+                    url: `https://www.facebook.com/${this.username}/`,
+                    icon: "fab fa-facebook",
+                    service_name: "Facebook"
+                }
+            ),
+            this.#traditionalCheck( // Vimeo check
+                {
+                    url: `https://vimeo.com/${this.username}/`,
+                    icon: "fab fa-vimeo",
+                    service_name: "Vimeo"
+                }
+            ),
+            this.#traditionalCheck( // Dribbble check
+                {
+                    url: `https://dribbble.com/${this.username}/`,
+                    icon: "fab fa-dribbble",
+                    service_name: "Dribbble"
+                }
+            )
         ]).then((values)=>{
             callback(values);
         })
