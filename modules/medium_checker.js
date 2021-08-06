@@ -113,8 +113,7 @@ module.exports = class socialChecker {
                     }
                 })
             } catch (error) {
-                throw error;
-                availability = true;
+                availability = false;
             }
             resolve({
                 availability: availability,
