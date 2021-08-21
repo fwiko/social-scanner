@@ -10,6 +10,16 @@ async function checkUsernames(username, callback) {
     });
 }
 
+function getUsernameCount(callback) {
+    fs.readFile('./data/information.json', (err, data) => {
+        if (err) throw err;
+        let information = JSON.parse(data);
+        const username_count = information.usernames_checked;
+        console.log(username_count);
+        return callback(username_count);
+    })
+}
+
 // TODO - username alpha, number, underscore and fullstop validation
 
 router.post('/', async (req, res) => {
@@ -34,20 +44,23 @@ router.post('/', async (req, res) => {
 
         });     
     } else {
-        res.render('index', {
-            message: "Invalid username input"
-        });
+        getUsernameCount((usernames_checked)=>{
+            console.log(usernames_checked)
+            res.render('index', {
+                message: "Invalid username input",
+                usernamesChecked: usernames_checked
+            });
+        })
     }
 });
 
 router.get('/', (req, res) => {
-    fs.readFile('./data/information.json', (err, data) => {
-        if (err) throw err;
-        let information = JSON.parse(data);
+    getUsernameCount((usernames_checked)=>{
+        console.log(usernames_checked)
         res.render('index', {
-            usernamesChecked: information.usernames_checked
+            usernamesChecked: usernames_checked
         });
-    });
+    })
 });
 
 module.exports = router;
