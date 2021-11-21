@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
                 checkUsernames(username, (mediums) => {
 
                     // Request logging
-                    console.log(`\n┌ ${ip} checked "${username}"\n├───────────────────⎯⎯⎯⎯⎯⎯⎯─────⎯⎯⎯⎯⎯`);
+                    console.log(`\n┌ ${ip} checked "${username}"\n├────────────────────────────────────`);
                     mediums.forEach(element => {
                         console.log(`│ ${element.service_name}${" ".repeat(((Math.max.apply(Math, mediums.map((e)=>{
                             return e.service_name.length
