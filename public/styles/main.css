@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2E3440;
+    color: white;
+    font-family: 'roboto mono', monospace;
+    padding-bottom: 100px;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 0;
+}
+
+.content {
+    position: relative;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10vh;
+}
+
+.submit-button {
+    width: 100%;
+    background-color: gold;
+    border: 3px outset gold;
+    color: white;
+    padding: .5rem;
+    border-radius: .5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    letter-spacing: .1rem;
+}
+
+.submit-button:hover {
+    border: 3px outset rgb(230, 195, 0);
+    background-color: rgb(230, 195, 0);
+}
+
+.submit-button:active {
+    border: 3px inset gold;
+}
+
+.form-control {
+    width: 100%;
+    border-radius: .5rem;
+    padding: .5rem;
+    font-size: 1.5rem;
+    border: 2px solid gray;
+}
+
+.error-response {
+    background-color: #7d3232;
+    border-radius: .5rem;
+    padding: 1rem;
+    border: 2px solid red;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.error-response p {
+    margin: 0;
+    color: rgb(255, 197, 197);
+}
+
+.card {
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+.card-title {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.card hr {
+    border: 1px solid white;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.result {
+    border-radius: 1em;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+
+    padding: 1em;
+}
+
+.result p {
+    margin: 0;
+}
+
+.available {
+    background-color: #427d32;
+    border: 2px solid limegreen;
+}
+
+.unavailable {
+    background-color: #7d3232;
+    border: 2px solid red;
+}
+
+.form-control:focus {
+    outline: none;
+}
+
+.card:hover {
+    opacity: 0.8;
+}
+
+.main a {
+    text-decoration: none;
+    color: white;
+}
+
+.main .result-string {
+    text-align: center;
+}
+
+.footer {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .5rem;
+    background-color: #424a5c;
+    color: white;
+    text-align: center;
+}
+
+.footer a {
+    color: white;
+}
+
+
+@media screen and (max-width:1000px) {
+    .results {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 1em;
+        margin-top: 1em;
+    }
+}

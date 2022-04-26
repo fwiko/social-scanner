@@ -1,25 +1,27 @@
 {
-  "name": "usernamechecker",
-  "version": "2.0.0",
-  "description": "An application written to check username availability on a variety of platforms",
-  "main": "app.js",
+  "name": "social_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
   "scripts": {
-    "test": "nodemon app.js",
-    "start": "node app.js"
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "got": "^11.8.0",
-    "got-xml": "^1.0.0",
-    "hbs": "^4.1.1",
-    "nodemon": "^2.0.7",
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "hbs": "^4.2.0",
+    "morgan": "^1.10.0",
     "path": "^0.12.7",
     "tinydb": "^0.1.0",
-    "twitter": "^1.7.1",
-    "xml-js": "^1.6.11"
+    "twitter-api-v2": "^1.12.0",
+    "xml2json": "^0.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

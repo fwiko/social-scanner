@@ -1,41 +1,29 @@
 # Social Scanner
- A web app written in Node.JS using express that will check if a username is available on different websites/services.
+ A web app written with [node.js](https://nodejs.org/en/) allowing users to check the availability of usernames on a variety of online platforms.
  https://checker.raffsimms.com
 
-## Run Locally
+## Run
 
 ### Environment Variables
-Create `.env` in main directory containing the following information
+Create `.env` in the root directory containing the following information
 ```
-CONSUMER_KEY = TWITTER_API_CONSUMER_KEY
-CONSUMER_SECRET = TWITTER_API_SECRET
-BEARER_TOKEN = TWITTER_API_BEARER_TOKEN
+# host data
+PORT = 80
 
-TWITCH_BEARER_TOKEN = TWITCH_APP_BEARER_TOKEN
-TWITCH_CLIENT_ID = TWITCH_APP_CLIENT_ID
-
-PORT = 3027
+# twitter data
+TWITTER_TOKEN = <your-twitter-token>
 ```
+
+### Install dependencies
+
+`npm install`
 
 ### Running the App
-`npm install`
+
 
 `npm run start`
 
-## Run Using Docker
-
-### Environment Variables
-Create `.env` in main directory containing the following information
-```
-CONSUMER_KEY = TWITTER_API_CONSUMER_KEY
-CONSUMER_SECRET = TWITTER_API_SECRET
-BEARER_TOKEN = TWITTER_API_BEARER_TOKEN
-
-TWITCH_BEARER_TOKEN = TWITCH_APP_BEARER_TOKEN
-TWITCH_CLIENT_ID = TWITCH_APP_CLIENT_ID
-
-PORT = 3027
-```
+## Containerise with Docker
 
 ### Prerequisite Installation
 `npm install`
@@ -44,4 +32,4 @@ PORT = 3027
 `docker build -t social-scanner .`
 
 ### Running the Docker Image
-`docker run -d -v "$PWD":/usr/src/app -p 3027:3027 --name social-scanner-app social-scanner:latest`
+`docker run -d -v "$PWD":/usr/src/app -p 80:<containerPort> --name social-scanner social-scanner:latest`

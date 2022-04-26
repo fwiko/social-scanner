@@ -1,13 +1,10 @@
-FROM node:latest
+FROM node:16.14-slim
 
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package-lock.json /usr/src/app
+COPY package-lock.json ./
 RUN npm install
 
-COPY . /usr/src/app
-EXPOSE 3027
+COPY . .
 
-CMD ["node", "app.js"]
-
+CMD ["npm", "run", "start"]
