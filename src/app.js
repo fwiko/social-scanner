@@ -17,6 +17,7 @@ app.use('/', require(path.join(__dirname, 'routing', 'get')));
 app.use('/', require(path.join(__dirname, 'routing', 'post')));
 
 app.set('view engine', 'hbs');
+app.set("trust proxy", true);
 
 app.listen(process.env.PORT || 80, () => {
     console.log(`Server started on port ${process.env.PORT || 80}`);
