@@ -13,7 +13,6 @@ PORT = 80
 RECAPTCHA_SITE_KEY = <recaptcha-site-key>
 RECAPTCHA_SECRET_KEY = <recaptcha-secret-key>
 
-
 # twitter data
 TWITTER_TOKEN = <twitter-api-token>
 ```
