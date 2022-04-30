@@ -63,6 +63,11 @@
             "url": "https://api.twitch.tv/helix/users/?login={username}",
             "link": "https://twitch.tv/{username}/",
             "icon": "fab fa-twitch"
+        },
+        {
+            "name": "SoundCloud",
+            "urls": ["https://soundcloud.com/{username}"],
+            "icon": "fab fa-soundcloud"
         }
     ]
 }
