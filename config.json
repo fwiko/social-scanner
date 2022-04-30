@@ -60,7 +60,6 @@
         {
             "name": "Twitch",
             "check": "twitch",
-            "url": "https://api.twitch.tv/helix/users/?login={username}",
             "link": "https://twitch.tv/{username}/",
             "icon": "fab fa-twitch"
         },

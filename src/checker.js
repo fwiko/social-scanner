@@ -2,8 +2,12 @@ const fs = require('fs');
 const axios = require('axios').default;
 const xml2json = require('xml2json');
 const { TwitterApi } = require('twitter-api-v2');
+const { ClientCredentialsAuthProvider } = require('@twurple/auth');
+const { ApiClient} = require('@twurple/api');
 
 const twitterClient = new TwitterApi(process.env.TWITTER_TOKEN);
+const authProvider = new ClientCredentialsAuthProvider(process.env.TWITCH_CLIENT_ID, process.env.TWITCH_CLIENT_SECRET)
+const twitchApiClient = new ApiClient({ authProvider })
 
 function validateUsername(username) {
     return /^[a-zA-Z0-9_.-]{1,30}$/.test(username);
@@ -51,8 +55,8 @@ function getCheck(info) {
                 return twitterCheck(info);
             case "minecraft":
                 return minecraftCheck(info);
-            // case "twitch":
-            //     return twitchCheck(info);
+            case "twitch":
+                return twitchCheck(info);
             default:
                 return Promise.reject("Not implemented");
         }
@@ -113,6 +117,14 @@ function minecraftCheck(info) {
             resolve(createResponse({ available, info }));
         }).catch(err => reject(err));
     })
+}
+
+function twitchCheck(info) {
+    return new Promise(async function (resolve, reject) {
+        twitchApiClient.users.getUserByName(info.username).then(async (response) => {
+            resolve(createResponse({ available: !response, info }));
+        }).catch(err => reject(err));
+    });
 }
 
 module.exports = { getCheck, createPromises, validateUsername };
