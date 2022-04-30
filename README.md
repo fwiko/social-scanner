@@ -35,4 +35,4 @@ TWITTER_TOKEN = <twitter-api-token>
 `docker build -t social-scanner .`
 
 ### Running the Docker Image
-`docker run -d -p 80:<containerPort> --name social-scanner social-scanner:latest`
+`docker run -d -v $(pwd):/app/ -v /app/node_modules -p <hostPort>:<containerPort> --name social-scanner social-scanner:latest`
