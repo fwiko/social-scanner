@@ -10,8 +10,13 @@ Create `.env` in the root directory containing the following information
 # host data
 PORT = 80
 
+# google captcha data
+RECAPTCHA_SITE_KEY = <recaptcha-site-key>
+RECAPTCHA_SECRET_KEY = <recaptcha-secret-key>
+
+
 # twitter data
-TWITTER_TOKEN = <your-twitter-token>
+TWITTER_TOKEN = <twitter-api-token>
 ```
 
 ### Install dependencies
@@ -32,4 +37,4 @@ TWITTER_TOKEN = <your-twitter-token>
 `docker build -t social-scanner .`
 
 ### Running the Docker Image
-`docker run -d -v "$PWD":/usr/src/app -p 80:<containerPort> --name social-scanner social-scanner:latest`
+`docker run -d -p 80:<containerPort> --name social-scanner social-scanner:latest`

@@ -15,7 +15,7 @@ router.get('/api', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    return res.status(200).render('main');
+    return res.status(200).render('main', { siteKey: process.env.RECAPTCHA_SITE_KEY });
 })
 
 module.exports = router;

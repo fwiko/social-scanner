@@ -20,6 +20,18 @@
     <meta name="og:description" content="Check the availability of usernames on a variety of platforms.">
     <meta name="og:url" content="https://checker.raffsimms.com">
     <meta name="theme-color" content="#ffd900">
+
+    <script src="https://www.google.com/recaptcha/api.js?render={{siteKey}}" type="text/javascript"></script>
+    <script>
+        grecaptcha.ready(() => {
+            grecaptcha.execute("{{siteKey}}", {
+                action: 'validate_captcha'
+            })
+                .then(token => {
+                    document.getElementById('g-recaptcha-response').value = token;
+                });
+        });
+    </script>
 </head>
 
 <body>
@@ -33,6 +45,7 @@
             <form action="/" role="form" method="POST">
                 <input type="text" name="username" class="form-control" id="username" placeholder="Username"
                     style="margin-bottom: 1em;">
+                <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
                 <button type="submit" class="submit-button">CHECK USERNAME</button>
             </form>
 

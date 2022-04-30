@@ -106,7 +106,7 @@ function twitterCheck(info) {
 }
 
 function minecraftCheck(info) {
-    return new Promise(async function(resolve, reject) {
+    return new Promise(async function (resolve, reject) {
         axios.get(`https://api.mojang.com/users/profiles/minecraft/${info.username}`).then(async (response) => {
             const jsonResponse = response.data;
             const available = !jsonResponse.hasOwnProperty('id');
