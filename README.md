@@ -1,6 +1,5 @@
 # Social Scanner
- A web app written with [node.js](https://nodejs.org/en/) allowing users to check the availability of usernames on a variety of online platforms.
- https://checker.raffsimms.com
+ A web app allowing users to check the availability of usernames on a variety of online platforms.
 
 ## Run
 
