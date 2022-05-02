@@ -9,4 +9,6 @@ RUN apk add --no-cache --virtual .gyp python3 make g++ \
 
 COPY . .
 
+EXPOSE 80
+
 CMD ["node", "src/app.js"]
