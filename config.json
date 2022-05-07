@@ -67,6 +67,11 @@
             "name": "SoundCloud",
             "urls": ["https://soundcloud.com/{username}"],
             "icon": "fab fa-soundcloud"
+        },
+        {
+            "name": "TikTok",
+            "urls": ["https://www.tiktok.com/@{username}"],
+            "icon":"fab fa-tiktok"
         }
     ]
 }
