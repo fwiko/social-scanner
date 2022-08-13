@@ -1,5 +1,5 @@
 # Social Scanner
- A web app allowing users to check the availability of usernames on a variety of online platforms.
+ A web app allowing users to check the availability of usernames on a variety of online platforms. I plan to refactor this and use NextJS at some point.
 
 ## Run
 
