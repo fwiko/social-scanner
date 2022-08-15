@@ -1,0 +1,23 @@
+@import '../settings/colours';
+
+.btn {
+    border-radius: .25em;
+    padding: .75em;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+    width: 100%;
+
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+    &-primary {
+        background-color: $highlight-colour;
+        color: $light-colour-secondary;
+    }
+
+    &:hover {
+        background-color: $highlight-colour-secondary;
+    }
+}

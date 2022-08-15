@@ -1,0 +1,71 @@
+@import './settings/colours';
+
+* {
+  box-sizing: border-box;
+  transition: all .25s ease-in-out;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: $background-colour;
+}
+
+
+.t {
+  &-clr {
+    &-light {
+      color: $light-colour-primary;
+      &-secondary {
+        color: $light-colour-secondary;
+      }
+    }
+  
+    &-dark {
+      color: $dark-colour-primary;
+      &-secondary {
+        color: $dark-colour-secondary;
+      }
+    }
+  
+    &-highlight {
+      color: $highlight-colour;
+    }
+  }
+
+  &-position {
+    &-center {
+      text-align: center;
+    }
+  }
+}
+
+.f {
+  &-size {
+    &-lg {
+      font-size: 4em;
+    }
+    &-md {
+      font-size: 2.25em;
+    }
+    &-sm {
+      font-size: 1.25em;
+    }
+    &-xs {
+      font-size: 1em;
+    }
+  }
+  &-weight {
+    &-bold {
+      font-weight: 600;
+    }
+    &-extrabold {
+      font-weight: 800;
+    }
+  }
+}

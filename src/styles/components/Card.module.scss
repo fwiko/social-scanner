@@ -1,0 +1,51 @@
+@import '../settings/colours';
+
+.card {
+    padding: .5em;
+    border-radius: .25em;
+    background-color: $dark-colour-primary;
+    border: .1em solid $dark-colour-secondary;
+    width: 100%;
+    text-decoration: none;
+    
+    h2 {
+        margin-bottom: 0;
+    }
+
+    hr {
+        border: 0;
+    }
+
+    &-result {
+        text-align: center;
+
+        &:hover {
+            opacity: .8;
+        }
+
+        &-available {
+            background-color: $available;
+            border: .1em solid $available-secondary;
+            hr {
+                border-top: 1px solid $available-secondary;
+            }
+        }
+    
+        &-unavailable {
+            background-color: $unavailable;
+            border: .1em solid $unavailable-secondary;
+            hr {
+                border-top: 1px solid $unavailable-secondary;
+            }
+        }
+    
+        &-neutral {
+            background-color: $neutral;
+            border: .1em solid $neutral-secondary;
+            hr {
+                border-top: 1px solid $neutral-secondary;
+            }
+            
+        }
+    }
+}
