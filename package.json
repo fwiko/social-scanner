@@ -1,28 +1,28 @@
 {
-  "name": "social_api",
+  "name": "social-scanner",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/app.js",
-  "scripts": {
-    "dev": "nodemon src/app.js",
-    "start": "node src/app.js"
-  },
-  "keywords": [],
-  "author": "",
+  "private": true,
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.15"
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@twurple/api": "^5.1.6",
-    "@twurple/auth": "^5.1.6",
-    "axios": "^0.27.1",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.0",
-    "hbs": "^4.2.0",
-    "morgan": "^1.10.0",
-    "path": "^0.12.7",
-    "twitter-api-v2": "^1.12.0",
-    "xml2json": "^0.12.0"
+    "@twurple/api": "^5.2.1",
+    "@twurple/auth": "^5.2.1",
+    "axios": "^0.27.2",
+    "fast-xml-parser": "^4.0.9",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-google-recaptcha-v3": "^1.10.0",
+    "sass": "^1.54.4",
+    "twitter-api-v2": "^1.12.3"
+  },
+  "devDependencies": {
+    "eslint": "8.22.0",
+    "eslint-config-next": "12.2.5"
   }
 }

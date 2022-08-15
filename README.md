@@ -1,38 +1,25 @@
-# Social Scanner
- A web app allowing users to check the availability of usernames on a variety of online platforms.
+# **Social Scanner**
 
-## Run
+Check the availability of your favourite username on a variety of online platforms. This project was originally built using Express and Node. I decided to refactor this and use it as an oppourtunity to update the front-end design and further my experience using Next.JS.
 
-### Environment Variables
-Create `.env` in the root directory containing the following information
+# **Deployment**
+
+This application has been designed to run within a [Docker](https://www.docker.com/) container, using environment variables to store any necessary API keys for certain platforms. The [Google ReCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) site key must be set as a build argument when building the image.
+
+### Build Docker Image
+
+```bash
+docker build -t social-scanner \
+    --build-arg=NEXT_PUBLIC_RECAPTCHA_SITE_KEY='<public-recaptcha-site-key>' .
 ```
-# host data
-PORT = 80
-
-# google captcha data
-RECAPTCHA_SITE_KEY = <recaptcha-site-key>
-RECAPTCHA_SECRET_KEY = <recaptcha-secret-key>
-
-# twitter data
-TWITTER_TOKEN = <twitter-api-token>
-```
-
-### Install dependencies
-
-`npm install`
-
-### Running the App
-
-
-`npm run start`
-
-## Containerise with Docker
-
-### Prerequisite Installation
-`npm install`
-
-### Creation of Docker Image
-`docker build -t social-scanner .`
 
 ### Running the Docker Image
-`docker run -d -v $(pwd):/app/ -v /app/node_modules -p <hostPort>:<containerPort> --name social-scanner social-scanner:latest`
+
+```bash
+docker run -d -p <hostPort>:3000 \
+    -e TWITTER_API_TOKEN='<twitter-api-token>' \
+    -e RECAPTCHA_SECRET_KEY='<recaptcha-secret-key>' \
+    -e TWITCH_CLIENT_ID='<twitch-client-id>' \
+    -e TWITCH_CLIENT_SECRET='<twitch-client-secret>' \
+    --name social-scanner social-scanner
+```
