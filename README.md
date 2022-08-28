@@ -1,6 +1,6 @@
 # **Social Scanner**
 
-Check the availability of your favourite username on a variety of online platforms. This project was originally built using Express and Node. I decided to refactor this and use it as an oppourtunity to update the front-end design and further my experience using Next.JS.
+Check the availability of your favourite username on a variety of online platforms. Originally built using ExpressJS and Handlebars, I decided to refactor this project and use it as an oppourtunity to update the front-end design and further my experience using Next.JS.
 
 # **Deployment**
 
