@@ -1,10 +1,10 @@
 # **Social Scanner**
 
-Check the availability of your favourite username on a variety of online platforms. Originally built using ExpressJS and Handlebars, I decided to refactor this project and use it as an oppourtunity to update the front-end design and further my experience using Next.JS.
+Check the availability of your favourite username on a variety of online platforms. Originally built using ExpressJS and Handlebars, I used the opportunity to refactor this project to update the front-end design and further my experience using Next.JS.
 
 # **Deployment**
 
-This application has been designed to run within a [Docker](https://www.docker.com/) container, using environment variables to store any necessary API keys for certain platforms. The [Google ReCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) site key must be set as a build argument when building the image.
+This application has been designed to run within a [Docker](https://www.docker.com/) container, using environment variables to store API keys necessary for full functionality. The [Google ReCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) site key must be set as a build argument when building the image.
 
 ### Build Docker Image
 
