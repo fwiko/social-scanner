@@ -1,7 +1,7 @@
 import styles from '../styles/Home.module.scss'
 
 import axios from 'axios'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { isValidUsername } from '@utils/validation'
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
@@ -19,6 +19,7 @@ export default function Home() {
     const [username, setUsername] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [checks, setChecks] = useState(0);
 
     const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -69,15 +70,24 @@ export default function Home() {
         setLoading(false);
     }
 
+    const getStatistics = () => {
+        axios.get('/api/stats', { headers: { 'Content-Type': 'application/json' } })
+            .then(res => setChecks(res.data.uniqueChecks))
+            .catch(err => console.error(err));
+    }
+
     const clearResults = () => {
         setResults(null);
         setUsername(null);
         setError(null);
+        getStatistics();
     }
+
+    useEffect(() => getStatistics(), []);
 
     const headingText = (
         <>
-            <h1 className="t-clr-light f-size-md">Social Scanner 📡</h1>
+            <h1 className="t-clr-light f-size-md">Social Scanner 📡 </h1>
             <hr />
             <p className={`${styles.description} t-clr-light-secondary f-size-sm`}>
                 Check the availability of your favourite username on a variety of online platforms. Including: {' '}
@@ -129,6 +139,7 @@ export default function Home() {
                                     <input type='text' placeholder='Username' name='username' minLength={1}></input>
                                 </Form>
                             </Card>
+                            <p className={`t-clr-light ${styles.description}`}>Usernames Checked: <span className='t-clr-highlight f-weight-bold'>{checks}</span></p>
                             {error ? (<div className={`f-size-sm ${styles.error}`}>{error}</div>) : ''}
                         </>
                     )
