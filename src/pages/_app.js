@@ -2,7 +2,6 @@ import '../styles/globals.scss'
 
 import Head from 'next/head'
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
-import getConfig from 'next/config';
 
 function MyApp({ Component, pageProps }) {
     return (
