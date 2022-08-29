@@ -1,6 +1,3 @@
-import fs from 'fs';
-
-import stats from '../data/stats.json';
 import { SocialCheckerConfig } from '../../checker.config';
 
 export const getPromises = (username) => {
@@ -61,18 +58,4 @@ export const getPromises = (username) => {
     });
 
     return [...defaultPromises, ...defaultManyPromises, ...otherPromises];
-}
-
-export const getStats = () => {
-    return stats;
-}
-
-export const updateStats = (username) => {
-    stats.totalChecks += 1;
-    if (!stats.checkedUsernames.includes(username)) {
-        stats.checkedUsernames.push(username);
-    }
-    fs.writeFile('../../checker.config', JSON.stringify(stats), (err) => {
-        if (err) throw err;
-    })
 }
