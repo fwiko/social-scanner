@@ -1,5 +1,6 @@
-import { getPromises } from "@utils/checker";
+import fs from 'fs';
 
+import { getPromises, updateStats } from "@utils/checker";
 import { isValidCaptcha, isValidUsername } from "@utils/validation";
 
 export default async function handler(req, res) {
@@ -27,4 +28,6 @@ export default async function handler(req, res) {
             return { status: result.value.status, url: result.value.url, name: result.value.name };
         })
     );
+
+    updateStats(submittedUsername);
 }
