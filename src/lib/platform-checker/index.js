@@ -5,4 +5,6 @@ import { steamCheck } from "./checks/steam";
 import { twitterCheck } from "./checks/twitter";
 import { twitchCheck } from "./checks/twitch";
 
-export default { defaultCheck, defaultCheckMany, minecraftCheck, robloxCheck, steamCheck, twitterCheck, twitchCheck };
+const checks = { defaultCheck, defaultCheckMany, minecraftCheck, robloxCheck, steamCheck, twitterCheck, twitchCheck };
+
+export default checks;
