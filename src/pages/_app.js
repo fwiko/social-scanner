@@ -9,13 +9,10 @@ function MyApp({ Component, pageProps }) {
         <>
             <Head>
                 <title>Social Scanner</title>
+                <meta name="og:title" content="Social Scanner 📡" />
                 <meta name="description"
-                    content="📡 Check the availability of your favourite username on a variety of online platforms." />
+                    content="Check the availability of your favourite username on a variety of online platforms." />
                 <link rel="icon" href="/favicon.ico" />
-                <link
-                    rel="icon"
-                    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📡</text></svg>"
-                />
             </Head>
 
             <GoogleReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}>
