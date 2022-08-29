@@ -10,8 +10,8 @@ function MyApp({ Component, pageProps }) {
             <Head>
                 <title>Social Scanner</title>
                 <meta name="og:title" content="Social Scanner 📡" />
-                <meta name="description"
-                    content="Check the availability of your favourite username on a variety of online platforms." />
+                <meta name="description" content="Check the availability of your favourite username on a variety of online platforms." />
+                <meta name="og:description" content="Check the availability of your favourite username on a variety of online platforms." />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
