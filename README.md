@@ -21,5 +21,5 @@ docker run -d -p <hostPort>:3000 \
     -e RECAPTCHA_SECRET_KEY='<recaptcha-secret-key>' \
     -e TWITCH_CLIENT_ID='<twitch-client-id>' \
     -e TWITCH_CLIENT_SECRET='<twitch-client-secret>' \
-    --name social-scanner social-scanner
+    --name social-scanner social-scanner:latest
 ```
