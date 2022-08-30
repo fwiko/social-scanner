@@ -13,7 +13,7 @@ docker build -t social-scanner \
     --build-arg=NEXT_PUBLIC_RECAPTCHA_SITE_KEY='<public-recaptcha-site-key>' .
 ```
 
-### Running the Docker Image
+### Starting the Docker Container
 
 ```bash
 docker run -d -p <hostPort>:3000 \
