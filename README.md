@@ -4,7 +4,7 @@ Check the availability of your favourite username on a variety of online platfor
 
 # **Deployment**
 
-This application has been designed to run within a [Docker](https://www.docker.com/) container, using environment variables to store API keys necessary for full functionality. The [Google ReCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) site key must be set as a build argument when building the image.
+This application has been designed to run within a **[Docker](https://www.docker.com/) container**, using environment variables to store API keys necessary for full functionality. The **[Google ReCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) site key** must be set as a build argument when building the image.
 
 ### Build Docker Image
 
