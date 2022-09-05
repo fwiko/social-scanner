@@ -30,4 +30,5 @@ export default async function handler(req, res) {
     );
 
     updateStats(submittedUsername);
+    console.log(`Checked Username: ${submittedUsername}`);
 }
