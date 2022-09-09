@@ -1,6 +1,4 @@
-import fs from 'fs';
-
-import { getPromises, updateStats } from "@utils/checker";
+import { getPromises } from "@utils/checker";
 import { isValidCaptcha, isValidUsername } from "@utils/validation";
 
 export default async function handler(req, res) {
@@ -29,6 +27,5 @@ export default async function handler(req, res) {
         })
     );
 
-    updateStats(submittedUsername);
     console.log(`Checked Username: ${submittedUsername}`);
 }
